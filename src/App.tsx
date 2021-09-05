@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch } from "react-router";
+import { Redirect } from "react-router-dom";
+import CharacterList from "./components/characters/CharacterList";
+import Home from "./components/home/Home";
+import Login from "./components/login/Login";
+import CharacterProvider from "./context/CharacterContext";
 
-function App() {
+const App = () => {
+  const isLogged = localStorage.getItem("token") ? true : false;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CharacterProvider>
+      <div className="text-white" style={{ height: "100vh" }}>
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path ="/character-list" component={CharacterList}/>
+          {isLogged ? <Redirect to="/home" /> : <Redirect to="/login" />}
+        </Switch>
+      </div>
+    </CharacterProvider>
   );
-}
-
+};
 export default App;
