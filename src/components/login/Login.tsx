@@ -1,22 +1,24 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { User } from "../../types";
 import { getSesionToken } from "../../services/getSesionToken";
-import { useHistory } from "react-router";
+
+import { useState } from "react";
+import { Redirect } from "react-router";
 const INITIAL_VALUE: User = {
   email: "",
   pass: "",
 };
 
 const Login = () => {
-  let isLoginValidated = false;
-  let history = useHistory();
+  const [isUserLogged, setIsUserLogged] = useState(false);
+
   const validateEmail = (value: string) => {
     let error;
     if (!value) {
       error = "Please, type an valid email.";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
       error = "Formato de email inválido.";
-    } else if (value != "challenge@alkemy.org") {
+    } else if (value !== "challenge@alkemy.org") {
       error = "Email Invalido. Por favor, vuelva a ingresar un mail.";
     } else {
       error = undefined;
@@ -27,19 +29,19 @@ const Login = () => {
     let error;
     if (!value) {
       error = "Por favor, ingrese una contraseña";
-    } else if (value != "react") {
+    } else if (value !== "react") {
       error = "Por favor, ingrese una contraseña válida";
-    } else if (value == "react") {
+    } else if (value === "react") {
       error = undefined;
     }
 
     return error;
   };
-  const handleSubmit = (user: User) => {
-    isLoginValidated = getSesionToken(user);
-  };
+  if (isUserLogged) {
+    return <Redirect to="/home" />;
+  }
   return (
-    <div className="container-sm">
+    <div className="container-sm ">
       <div className="row">
         <div className="col"></div>
         <div className="col">
@@ -49,8 +51,8 @@ const Login = () => {
             onSubmit={(values: User, actions: FormikHelpers<User>) => {
               setTimeout(() => {
                 let userSubmitted = values;
-                handleSubmit(userSubmitted);
-                history.push("home");
+                getSesionToken(userSubmitted);
+                setIsUserLogged(true);
               }, 1000);
               actions.setSubmitting(false);
             }}

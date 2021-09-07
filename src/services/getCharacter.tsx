@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Character, CharacterResults } from "../types";
 
-export const getCharacterByID = async (id: Number): Promise<Character> => {
+export const getCharacterByID = async (id?: string): Promise<Character> => {
   const resp = await axios.get<Character>(
     `https://www.superheroapi.com/api.php/10220303546485083/${id}`
   );
@@ -10,13 +10,23 @@ export const getCharacterByID = async (id: Number): Promise<Character> => {
 };
 
 export const getCharacterByCharacters = async (
-  letter: String
+  letter?: string
 ): Promise<Character[]> => {
   const resp = await axios.get<CharacterResults>(
     `https://www.superheroapi.com/api.php/10220303546485083/search/${letter}`
   );
 
   return resp.data.results;
+};
+
+export const getCharacterResults = async (
+  letter?: string
+): Promise<CharacterResults> => {
+  const resp = await axios.get<CharacterResults>(
+    `https://www.superheroapi.com/api.php/10220303546485083/search/${letter}`
+  );
+console.log(resp.data)
+  return resp.data;
 };
 
 export const getCharacterAppearanceByID = async (

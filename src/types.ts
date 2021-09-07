@@ -13,6 +13,7 @@ export interface CharacterResults {
   response: string;
   "results-for": string;
   results: Character[];
+  errors?: string;
 }
 export type User = {
   email: String;
@@ -20,6 +21,10 @@ export type User = {
 };
 export interface CharacterContextProvider {
   listCharacters: Character[];
+  myHeroes: Character[];
+  saveCharacter: (character: Character) => string;
+  deleteCharacter: (id: string) => string;
+
 }
 export interface Appearance {
   gender: string;
