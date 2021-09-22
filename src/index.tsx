@@ -3,14 +3,16 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
-import CharacterProvider from "./context/CharacterContext";
+
+import { Provider } from "react-redux";
+//import { store } from "./state/store";
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
-      <CharacterProvider>
+      {/* <Provider store={store}> */}
         <App />
-      </CharacterProvider>
+      {/* </Provider> */}
     </React.StrictMode>
   </BrowserRouter>,
 
