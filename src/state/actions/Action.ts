@@ -6,16 +6,15 @@ export enum ActionType {
 }
 export interface AddHeroAction {
   type: ActionType.ADD_HERO;
-
+  payload: void;
 }
 interface DeleteHeroAction {
   type: ActionType.DELETE_HERO;
+  payload: Character[];
 }
 interface GetHeroesAction {
   type: ActionType.GET_HEROES;
   payload: Character[];
 }
-export const addHero = () =>{
-  
-}
+
 export type Action = AddHeroAction | DeleteHeroAction | GetHeroesAction;

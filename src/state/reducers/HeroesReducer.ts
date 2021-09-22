@@ -1,9 +1,11 @@
 import { Action } from "../actions/Action";
 import { Character } from "../../types";
 import { ActionType } from "../actions/Action";
+import { configureStore } from "@reduxjs/toolkit";
 type CharacterState = {
   characters: Character[];
 };
+
 const INITIAL_STATE: CharacterState = { characters: [] };
 const HeroesReducer = (
   state: CharacterState = INITIAL_STATE,
@@ -11,16 +13,19 @@ const HeroesReducer = (
 ) => {
   switch (action.type) {
     case ActionType.ADD_HERO: {
-      return state;
-
-      break;
+      return {
+        state,
+      };
     }
     case ActionType.DELETE_HERO:
-      return state;
-      break;
+      return {
+        ...state,
+        action,
+      };
+
     case ActionType.GET_HEROES:
       return state;
-      break;
+
     default:
       return state;
   }
