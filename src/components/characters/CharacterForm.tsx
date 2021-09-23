@@ -1,4 +1,4 @@
-import Navbar from "../../navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import { useHistory } from "react-router";
 type searchCharacter = {

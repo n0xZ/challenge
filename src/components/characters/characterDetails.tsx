@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getCharacterByID } from "../../../services/getCharacter";
-import { Character } from "../../../types";
-import Navbar from "../../navbar/Navbar";
+import { getCharacterByID } from "../../services/getCharacter";
+import { Character } from "../../types";
+import Navbar from "../navbar/Navbar";
 type idParam = {
   id: string;
 };
@@ -27,24 +27,13 @@ const CharacterDetails = () => {
   return (
     <Navbar>
       <h1 className="text-center mb-4">Detalles del personaje</h1>
-      <div
-        className="bg-dark  text-white "
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className="bg-dark  text-white text-center  mb-4 h-4 w-4">
         <div
           className={
             characterDetail?.biography.alignment === "bad"
-              ? "card border-danger bg-transparent text-danger mb-3 "
+              ? "card border-danger bg-transparent text-danger mb-3"
               : "card border-primary bg-transparent text-primary mb-3"
           }
-          style={{
-            width: "19rem",
-          }}
         >
           <div
             className={

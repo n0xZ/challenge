@@ -1,18 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
-import { characterContext } from "../../../context/CharacterContext";
-import { getCharacterResults } from "../../../services/getCharacter";
-import { CharacterResults } from "../../../types";
-import Navbar from "../../navbar/Navbar";
-
+import { bindActionCreators } from "redux";
+import { getCharacterResults } from "../../services/getCharacter";
+import { actionCreators } from "../../state/actions-creators/ActionCreators";
+import { CharacterResults } from "../../types";
+import Navbar from "../navbar/Navbar";
 interface SearchParams {
   name: string;
 }
 const CharacterSearch = () => {
+  const dispatch = useDispatch();
+  const { addHero } = bindActionCreators(actionCreators, dispatch);
   const { name } = useParams<SearchParams>();
   const [CharacterResults, setCharacterResults] = useState<CharacterResults>();
   const [messageResponse, setmessageResponse] = useState<string>("");
-  const { saveCharacter } = useContext(characterContext);
+
   useEffect(() => {
     getCharacterResults(name).then((res) => {
       setCharacterResults(res);
@@ -70,9 +73,8 @@ const CharacterSearch = () => {
                       <button
                         className="btn btn-primary"
                         onClick={() => {
-                          const response = saveCharacter(char);
-                          setmessageResponse(response);
-                          console.log(response);
+                          addHero(char);
+                          setmessageResponse("Heroe agregado con exito");
                         }}
                       >
                         Agregar al equipo

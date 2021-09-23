@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../state/reducers";
 import Navbar from "../navbar/Navbar";
-import CharactersList from "../characters/List/CharactersList";
+import CharactersList from "../characters/CharactersList";
 import {actionCreators} from '../../state/actions-creators/ActionCreators'
 import { bindActionCreators } from "redux";
 const Home = (): JSX.Element => {
   const dispatch = useDispatch();
   let heroes = useSelector((state: State) => state.hero.characters);
-  const {deleteHero} = bindActionCreators(actionCreators,dispatch)
+
   return (
     <Navbar>
       <div className="bg-dark mb-4">
