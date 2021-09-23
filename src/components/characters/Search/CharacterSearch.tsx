@@ -17,8 +17,7 @@ const CharacterSearch = () => {
     getCharacterResults(name).then((res) => {
       setCharacterResults(res);
     });
-  }, []);
-  console.log(CharacterResults);
+  });
 
   return (
     <Navbar>

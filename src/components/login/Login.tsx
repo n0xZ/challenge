@@ -38,10 +38,11 @@ const Login = () => {
     return error;
   };
   if (isUserLogged) {
-    return <Redirect to="/home" />;
+    return <Redirect to="/" />;
   }
   return (
     <div className="container-sm ">
+    
       <div className="row">
         <div className="col"></div>
         <div className="col">

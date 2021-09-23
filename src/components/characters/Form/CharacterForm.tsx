@@ -1,8 +1,5 @@
-import React, { useState } from "react";
 import Navbar from "../../navbar/Navbar";
 import { Formik, Field, Form, FormikHelpers } from "formik";
-
-import { Character } from "../../../types";
 import { useHistory } from "react-router";
 type searchCharacter = {
   name: string;
@@ -12,7 +9,6 @@ const INITIAL_VALUE: searchCharacter = {
 };
 const CharacterForm = () => {
   let history = useHistory();
-  const [CharacterResults, setCharacterResults] = useState<Character[]>([]);
   const validateName = (value: string) => {
     let error;
     if (!value) {
