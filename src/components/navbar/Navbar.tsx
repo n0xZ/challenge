@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const Navbar: React.FC = ({ children }) => {
   return (
-    <div>
+    <div className="bg-dark" >
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between align-items-center text-dark px-3">
         <button
           className="navbar-toggler"
@@ -30,7 +30,7 @@ const Navbar: React.FC = ({ children }) => {
           </ul>
         </div>
       </nav>
-      <div className="bg-dark" style={{ height: "100vh" }}>
+      <div className="bg-dark mb-3" >
         {children}
       </div>
     </div>

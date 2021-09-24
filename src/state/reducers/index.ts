@@ -9,7 +9,7 @@ const INITIAL_STATE = { characters: [] };
 const HeroesReducer = (
   state: CharacterState = INITIAL_STATE,
   action: Action
-): CharacterState  => {
+): CharacterState => {
   switch (action.type) {
     case ActionTypeI.ADD_HERO: {
       return {
@@ -28,6 +28,7 @@ const HeroesReducer = (
 
     case ActionTypeI.GET_HEROES:
       return { ...state };
+
 
     default:
       return { ...state };

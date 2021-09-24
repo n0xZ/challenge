@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { bindActionCreators } from "redux";
 import { getCharacterResults } from "../../services/getCharacter";
 import { actionCreators } from "../../state/actions-creators/ActionCreators";
-import { CharacterResults } from "../../types";
+import { Character, CharacterResults } from "../../types";
 import Navbar from "../navbar/Navbar";
+import { State } from "../../state/reducers/index";
+import { Link } from "react-router-dom";
+import {
+  hasMoreThanThreeGoodHeroes,
+  hasMoreThanThreeBadHeroes,
+} from "../../services/getHeroesAlignment";
+
 interface SearchParams {
   name: string;
 }
@@ -15,13 +22,24 @@ const CharacterSearch = () => {
   const { name } = useParams<SearchParams>();
   const [CharacterResults, setCharacterResults] = useState<CharacterResults>();
   const [messageResponse, setmessageResponse] = useState<string>("");
-
+  let heroes = useSelector((state: State) => state.hero.characters);
   useEffect(() => {
     getCharacterResults(name).then((res) => {
       setCharacterResults(res);
     });
-  },[]);
-
+  }, []);
+  const addHeroBasedOnHeroesAlignment = (hero: Character) => {
+    if (
+      hasMoreThanThreeGoodHeroes(heroes) ||
+      hasMoreThanThreeBadHeroes(heroes)
+    ) {
+      return "No se puede agregar más de tres heroes del mismo tipo";
+    } else {
+      console.log("Funciona");
+      addHero(hero);
+      return "Heroe Agregado con éxito";
+    }
+  };
   return (
     <Navbar>
       <div>
@@ -71,11 +89,17 @@ const CharacterSearch = () => {
                         }
                       >
                         <article className="text-center">
+                          <Link to={`/characters/details/${char.id}`}>
+                            <button className="btn btn-primary mb-2">
+                              Detalles del heroe
+                            </button>
+                          </Link>
                           <button
-                            className="btn btn-primary"
+                            className="btn btn-success"
                             onClick={() => {
-                              addHero(char);
-                              setmessageResponse("Heroe agregado con exito");
+                              setmessageResponse(
+                                addHeroBasedOnHeroesAlignment(char)
+                              );
                             }}
                           >
                             Agregar al equipo

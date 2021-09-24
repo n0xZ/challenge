@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./components/login/Login";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import Home from "./components/home/Home";
-import CharacterDetails from "./components/characters/characterDetails";
+import CharacterDetails from "./components/characters/characterDetailsList";
 import CharacterForm from "./components/characters/CharacterForm";
 import CharacterSearch from "./components/characters/CharacterSearch";
 

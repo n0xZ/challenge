@@ -17,4 +17,9 @@ interface GetHeroesActionI {
   payload: Character[];
 }
 
-export type Action = AddHeroActionI | DeleteHeroActionI | GetHeroesActionI;
+
+export type Action =
+  | AddHeroActionI
+  | DeleteHeroActionI
+  | GetHeroesActionI
+
