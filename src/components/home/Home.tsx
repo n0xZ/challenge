@@ -1,13 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { State } from "../../state/reducers";
 import Navbar from "../navbar/Navbar";
 import CharacterList from "../characters/CharacterList";
-import { bindActionCreators } from "redux";
-import { actionCreators } from "../../state/actions-creators/ActionCreators";
-import { useEffect } from "react";
+import { getAverageStats } from "../../services/getHeroesAlignment";
 
 const Home = (): JSX.Element => {
-const dispatch = useDispatch()
   let heroes = useSelector((state: State) => state.hero.characters);
   return (
     <Navbar>
@@ -20,6 +17,7 @@ const dispatch = useDispatch()
             {heroes.length > 0 && <CharacterList heroList={heroes} />}
           </div>
         </div>
+        <button className="btn btn-info" onClick={()=> getAverageStats(heroes)}>obtener promedio stats</button>
       </div>
     </Navbar>
   );
