@@ -20,7 +20,7 @@ const CharacterSearch = () => {
     getCharacterResults(name).then((res) => {
       setCharacterResults(res);
     });
-  });
+  },[]);
 
   return (
     <Navbar>

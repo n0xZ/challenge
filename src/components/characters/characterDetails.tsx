@@ -27,7 +27,7 @@ const CharacterDetails = () => {
   return (
     <Navbar>
       <h1 className="text-center mb-4">Detalles del personaje</h1>
-      <div className="bg-dark text-center text-white mb-4 h-4 w-4 ">
+      <div className="bg-dark text-center text-white mb-4">
         <div className="d-flex flex-row justify-content-center">
           <div
             className={

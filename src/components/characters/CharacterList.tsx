@@ -1,13 +1,16 @@
-import React from "react";
-
 import { Character } from "../../types";
 import { Link } from "react-router-dom";
+import { actionCreators } from "../../state/actions-creators/ActionCreators";
+import { bindActionCreators } from "redux";
+import { useDispatch } from "react-redux";
 interface heroListProps {
   heroList: Character[];
   
 }
 
-const CharactersList: React.FC<heroListProps> = ({ heroList,children }) => {
+const CharacterList: React.FC<heroListProps> = ({ heroList,children }) => {
+  const dispatch = useDispatch();
+const {deleteHero} = bindActionCreators(actionCreators,dispatch)
   return (
     
       <div className="row ">
@@ -77,7 +80,7 @@ const CharactersList: React.FC<heroListProps> = ({ heroList,children }) => {
                       Detalles del heroe
                     </button>
                   </Link>
-                  <button className="btn btn-danger">
+                  <button className="btn btn-danger" onClick={() => deleteHero(char.id) }>
                     Eliminar del equipo
                   </button>
                 </article>
@@ -89,4 +92,4 @@ const CharactersList: React.FC<heroListProps> = ({ heroList,children }) => {
   );
 };
 
-export default CharactersList;
+export default CharacterList;

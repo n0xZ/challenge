@@ -3,7 +3,7 @@ import { User } from "../../types";
 import { getSesionToken } from "../../services/getSesionToken";
 
 import { useState } from "react";
-import { Redirect } from "react-router";
+import { Redirect } from "react-router-dom";
 const INITIAL_VALUE: User = {
   email: "",
   pass: "",
@@ -37,12 +37,9 @@ const Login = () => {
 
     return error;
   };
-  if (isUserLogged) {
-    return <Redirect to="/" />;
-  }
+  isUserLogged && <Redirect to="/" />;
   return (
     <div className="container-sm ">
-    
       <div className="row">
         <div className="col"></div>
         <div className="col">

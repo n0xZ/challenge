@@ -19,7 +19,7 @@ const HeroesReducer = (
     }
     case ActionTypeI.DELETE_HERO:
       let heroesFiltered = state.characters.filter(
-        (character) => character.id === action.payload
+        (character) => character.id !== action.payload
       );
       return {
         ...state,
