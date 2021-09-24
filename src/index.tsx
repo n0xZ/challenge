@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from "react-redux";
-import  {store}  from "./state/store";
+import { store } from "./state/store";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -18,4 +20,3 @@ ReactDOM.render(
 
   document.getElementById("root")
 );
-
