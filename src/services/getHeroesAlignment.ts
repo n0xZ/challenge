@@ -1,5 +1,5 @@
 import { Character } from "../types";
-interface powerStatsParsedI {
+export interface powerStatsParsedI {
   intelligence: number;
   strength: number;
   speed: number;
@@ -21,7 +21,7 @@ export const hasMoreThanThreeBadHeroes = (heroes: Character[]) => {
   return getBadHeroesLength >= 3;
 };
 
-export const getAverageStats = (heroes: Character[]) => {
+export const getAcumulativeStats = (heroes: Character[]) => {
   let initialPowerstats: powerStatsParsedI = {
     intelligence: 0,
     strength: 0,
@@ -30,6 +30,7 @@ export const getAverageStats = (heroes: Character[]) => {
     power: 0,
     combat: 0,
   };
+
   const getPowerStats = heroes.map((hero) => {
     return hero.powerstats;
   });
@@ -44,4 +45,17 @@ export const getAverageStats = (heroes: Character[]) => {
     initialPowerstats.power += parseInt(mappedPowerStatArray[i][4][1]);
     initialPowerstats.combat += parseInt(mappedPowerStatArray[i][5][1]);
   }
+  return initialPowerstats;
+};
+export const getAverageStats = (heroes: Character[]) => {
+  let parsePowerstatsObject = Object.entries(getAcumulativeStats(heroes));
+  let initialValue = parsePowerstatsObject[0][1];
+  let posicion = 0;
+  for (let i = 0; i < parsePowerstatsObject.length; i++) {
+    if (initialValue < parsePowerstatsObject[i][1]) {
+      initialValue = parsePowerstatsObject[i][1];
+      posicion = i;
+    }
+  }
+  return `El powerstat más grande es: ${parsePowerstatsObject[posicion][0].toUpperCase()} con: ${initialValue}`;
 };

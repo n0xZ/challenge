@@ -2,7 +2,10 @@ import { useSelector } from "react-redux";
 import { State } from "../../state/reducers";
 import Navbar from "../navbar/Navbar";
 import CharacterList from "../characters/CharacterList";
-import { getAverageStats } from "../../services/getHeroesAlignment";
+import {
+  getAcumulativeStats,
+  getAverageStats,
+} from "../../services/getHeroesAlignment";
 
 const Home = (): JSX.Element => {
   let heroes = useSelector((state: State) => state.hero.characters);
@@ -17,7 +20,16 @@ const Home = (): JSX.Element => {
             {heroes.length > 0 && <CharacterList heroList={heroes} />}
           </div>
         </div>
-        <button className="btn btn-info" onClick={()=> getAverageStats(heroes)}>obtener promedio stats</button>
+        <article className="text-primary text-center">
+          <h2>Acumulativo powerstats:</h2>
+          <p>Intelligence: {getAcumulativeStats(heroes).intelligence}</p>
+          <p>Strength: {getAcumulativeStats(heroes).strength}</p>
+          <p>Speed: {getAcumulativeStats(heroes).speed}</p>
+          <p>Durability: {getAcumulativeStats(heroes).durability}</p>
+          <p>Power: {getAcumulativeStats(heroes).power}</p>
+          <p>Combat: : {getAcumulativeStats(heroes).combat}</p>
+          <h1>{getAverageStats(heroes)}</h1>
+        </article>
       </div>
     </Navbar>
   );
