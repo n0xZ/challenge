@@ -3,19 +3,16 @@ import { Route, Switch } from "react-router";
 import Login from "./components/login/Login";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import Home from "./components/home/Home";
-import CharactersList from "./components/characters/CharactersList";
 import CharacterDetails from "./components/characters/characterDetails";
 import CharacterForm from "./components/characters/CharacterForm";
 import CharacterSearch from "./components/characters/CharacterSearch";
 
-
-const App:React.FC= () => {
+const App: React.FC = () => {
   return (
     <div className="bg-black text-white" style={{ height: "100vh" }}>
       <Switch>
         <Route exact path="/login" component={Login} />
         <PrivateRoutes exact path="/" component={Home} />
-        <PrivateRoutes path="/characterList" component={CharactersList} />
         <PrivateRoutes
           path="/characters/details/:id"
           component={CharacterDetails}

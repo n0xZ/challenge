@@ -6,7 +6,13 @@ interface FormProps {
 const FormComponent: React.FC<FormProps> = ({ initialValue, onSubmit }) => {
   return (
     <Formik initialValues={initialValue} onSubmit={onSubmit}>
-      {({ errors, touched }) => <Form></Form>}
+      {({ errors, touched }) => 
+      <Form>
+        
+        
+        
+      </Form>
+        }
     </Formik>
   );
 };

@@ -4,9 +4,10 @@ import { Character } from "../../types";
 import { Link } from "react-router-dom";
 interface heroListProps {
   heroList: Character[];
+  
 }
 
-const CharactersList: React.FC<heroListProps> = ({ heroList }) => {
+const CharactersList: React.FC<heroListProps> = ({ heroList,children }) => {
   return (
     
       <div className="row ">

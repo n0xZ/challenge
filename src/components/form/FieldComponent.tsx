@@ -6,8 +6,8 @@ interface FieldProps {
 const FieldComponent: React.FC<FieldProps> = ({ name, value }) => {
   return (
     <div>
-      <label>{name}</label>
-      <Field name={name}/>
+      <label className="form-label">{name}</label>
+      <Field className ="form-control" name={name}/>
     </div>
   );
 };
