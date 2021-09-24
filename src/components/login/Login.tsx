@@ -1,17 +1,18 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { User } from "../../types";
 import { getSesionToken } from "../../services/getSesionToken";
-
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { isUserLogged } from "../../auth/isUserLogged";
 const INITIAL_VALUE: User = {
   email: "",
   pass: "",
 };
 
 const Login = () => {
-  const [isUserLogged, setIsUserLogged] = useState(false);
-
+  const [userAuth, setuserAuth] = useState(isUserLogged);
+  const history = useHistory();
+  //Validaciones de formulario
   const validateEmail = (value: string) => {
     let error;
     if (!value) {
@@ -37,7 +38,7 @@ const Login = () => {
 
     return error;
   };
-  isUserLogged && <Redirect to="/" />;
+
   return (
     <div className="container-sm ">
       <div className="row">
@@ -50,9 +51,10 @@ const Login = () => {
               setTimeout(() => {
                 let userSubmitted = values;
                 getSesionToken(userSubmitted);
-                setIsUserLogged(true);
+                actions.setSubmitting(false);
               }, 1000);
-              actions.setSubmitting(false);
+              setuserAuth(true);
+              history.push("/");
             }}
           >
             {({ errors, touched }) => (

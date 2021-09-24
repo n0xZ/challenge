@@ -57,5 +57,7 @@ export const getAverageStats = (heroes: Character[]) => {
       posicion = i;
     }
   }
-  return `El powerstat más grande es: ${parsePowerstatsObject[posicion][0].toUpperCase()} con: ${initialValue}`;
+  return `El powerstat más grande es: ${parsePowerstatsObject[
+    posicion
+  ][0].toUpperCase()} con: ${initialValue}`;
 };

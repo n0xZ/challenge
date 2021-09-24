@@ -25,7 +25,6 @@ export const getCharacterResults = async (
   const resp = await axios.get<CharacterResults>(
     `https://www.superheroapi.com/api.php/10220303546485083/search/${letter}`
   );
-  console.log(resp.data);
   return resp.data;
 };
 

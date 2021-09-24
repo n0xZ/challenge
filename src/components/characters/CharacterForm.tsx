@@ -30,8 +30,9 @@ const CharacterForm = () => {
             values: searchCharacter,
             actions: FormikHelpers<searchCharacter>
           ) => {
-            history.push(`/search/results/${values.name}`);
+          
             actions.setSubmitting(false);
+            history.push(`/search/results/${values.name}`);
           }}
         >
           {({ errors, touched }) => (

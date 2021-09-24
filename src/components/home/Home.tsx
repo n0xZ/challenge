@@ -21,14 +21,19 @@ const Home = (): JSX.Element => {
           </div>
         </div>
         <article className="text-primary text-center">
-          <h2>Acumulativo powerstats:</h2>
-          <p>Intelligence: {getAcumulativeStats(heroes).intelligence}</p>
-          <p>Strength: {getAcumulativeStats(heroes).strength}</p>
-          <p>Speed: {getAcumulativeStats(heroes).speed}</p>
-          <p>Durability: {getAcumulativeStats(heroes).durability}</p>
-          <p>Power: {getAcumulativeStats(heroes).power}</p>
-          <p>Combat: : {getAcumulativeStats(heroes).combat}</p>
-          <h1>{getAverageStats(heroes)}</h1>
+          {heroes.length >= 2 ? (
+            <div>
+              {" "}
+              <h2>Acumulativo powerstats:</h2>
+              <p>Intelligence: {getAcumulativeStats(heroes).intelligence}</p>
+              <p>Strength: {getAcumulativeStats(heroes).strength}</p>
+              <p>Speed: {getAcumulativeStats(heroes).speed}</p>
+              <p>Durability: {getAcumulativeStats(heroes).durability}</p>
+              <p>Power: {getAcumulativeStats(heroes).power}</p>
+              <p>Combat: : {getAcumulativeStats(heroes).combat}</p>
+              <h1>{getAverageStats(heroes)}</h1>
+            </div>
+          ) : null}
         </article>
       </div>
     </Navbar>

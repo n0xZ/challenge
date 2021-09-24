@@ -12,7 +12,9 @@ import {
   hasMoreThanThreeGoodHeroes,
   hasMoreThanThreeBadHeroes,
 } from "../../services/getHeroesAlignment";
-
+type searchResponse = {
+  messageResponse?: String;
+};
 interface SearchParams {
   name: string;
 }
@@ -21,7 +23,9 @@ const CharacterSearch = () => {
   const { addHero } = bindActionCreators(actionCreators, dispatch);
   const { name } = useParams<SearchParams>();
   const [CharacterResults, setCharacterResults] = useState<CharacterResults>();
-  const [messageResponse, setmessageResponse] = useState<string>("");
+  const [messageResponse, setmessageResponse] = useState<string | undefined>(
+    " "
+  );
   let heroes = useSelector((state: State) => state.hero.characters);
   useEffect(() => {
     getCharacterResults(name).then((res) => {
@@ -35,7 +39,6 @@ const CharacterSearch = () => {
     ) {
       return "No se puede agregar más de tres heroes del mismo tipo";
     } else {
-      console.log("Funciona");
       addHero(hero);
       return "Heroe Agregado con éxito";
     }
@@ -46,8 +49,8 @@ const CharacterSearch = () => {
         <div className="container-sm pb-4">
           <div className="row bg-dark">
             <h1 className="text-center mb-4">Personajes encontrados</h1>
-            {CharacterResults?.errors
-              ? setmessageResponse(CharacterResults.errors)
+            {CharacterResults?.response === "error"
+              ? null
               : CharacterResults?.results.map((char) => (
                   <div key={char.id} className="col-sm-3 mb-4">
                     <div
@@ -111,11 +114,15 @@ const CharacterSearch = () => {
                 ))}
             <div
               className={
-                messageResponse.length > 1 ? "alert alert-primary" : ""
+                messageResponse && messageResponse.length > 1
+                  ? "alert alert-primary"
+                  : ""
               }
               role="alert"
             >
-              {messageResponse}
+              {CharacterResults?.response === "error"
+                ? "Error al buscar un heroe. Por favor, vuelva a ingresar otro heroe de nuevo"
+                : messageResponse}
             </div>
           </div>
         </div>

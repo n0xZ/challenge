@@ -12,7 +12,7 @@ const App: React.FC = () => {
     <div className="bg-dark  text-white" style={{ height: "100vh" }}>
       <Switch>
         <Route exact path="/login" component={Login} />
-        <PrivateRoutes exact path="/" component={Home} />
+        <PrivateRoutes  exact path="/" component={Home} />
         <PrivateRoutes
           path="/characters/details/:id"
           component={CharacterDetails}
