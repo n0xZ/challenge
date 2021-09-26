@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { State } from "../../state/reducers/index";
+import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
+import { useParams } from "react-router-dom";
 import { getCharacterResults } from "../../services/getCharacter";
 import { actionCreators } from "../../state/actions-creators/ActionCreators";
 import { Character, CharacterResults } from "../../types";
 import Navbar from "../navbar/Navbar";
-import { State } from "../../state/reducers/index";
-import { Link } from "react-router-dom";
 import {
   hasMoreThanThreeGoodHeroes,
   hasMoreThanThreeBadHeroes,
 } from "../../services/getHeroesAlignment";
-type searchResponse = {
-  messageResponse?: String;
-};
 interface SearchParams {
   name: string;
 }
@@ -81,7 +78,7 @@ const CharacterSearch = () => {
                           src={char.image.url}
                           alt="Imagen de personaje"
                           className=" img-fluid rounded-circle py-2 "
-                          style={{ width: "150px", height: "150px" }}
+                        
                         />
                       </div>
                       <div

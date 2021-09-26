@@ -2,8 +2,10 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 import { User } from "../../types";
 import { getSesionToken } from "../../services/getSesionToken";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+
 import { isUserLogged } from "../../auth/isUserLogged";
+import { Redirect } from "react-router-dom";
+import { validateEmail, validatePassword } from "../../auth/validateInputs";
 const INITIAL_VALUE: User = {
   email: "",
   pass: "",
@@ -11,34 +13,9 @@ const INITIAL_VALUE: User = {
 
 const Login = () => {
   const [userAuth, setuserAuth] = useState(isUserLogged);
-  const history = useHistory();
   //Validaciones de formulario
-  const validateEmail = (value: string) => {
-    let error;
-    if (!value) {
-      error = "Please, type an valid email.";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      error = "Formato de email inválido.";
-    } else if (value !== "challenge@alkemy.org") {
-      error = "Email Invalido. Por favor, vuelva a ingresar un mail.";
-    } else {
-      error = undefined;
-    }
-    return error;
-  };
-  const validatePassword = (value: String) => {
-    let error;
-    if (!value) {
-      error = "Por favor, ingrese una contraseña";
-    } else if (value !== "react") {
-      error = "Por favor, ingrese una contraseña válida";
-    } else if (value === "react") {
-      error = undefined;
-    }
 
-    return error;
-  };
-
+  if (userAuth) return <Redirect to="/" />;
   return (
     <div className="container-sm ">
       <div className="row">
@@ -47,14 +24,14 @@ const Login = () => {
           <h1 className="mb-3 ">Login Form</h1>
           <Formik
             initialValues={INITIAL_VALUE}
-            onSubmit={(values: User, actions: FormikHelpers<User>) => {
+            onSubmit={async (values: User, actions: FormikHelpers<User>) => {
               setTimeout(() => {
                 let userSubmitted = values;
                 getSesionToken(userSubmitted);
                 actions.setSubmitting(false);
               }, 1000);
+              window.location.replace('/')
               setuserAuth(true);
-              history.push("/");
             }}
           >
             {({ errors, touched }) => (

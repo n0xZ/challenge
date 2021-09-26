@@ -7,7 +7,7 @@ interface heroListProps {
   heroList: Character[];
 }
 
-const CharacterList: React.FC<heroListProps> = ({ heroList, children }) => {
+const CharacterList: React.FC<heroListProps> = ({ heroList}) => {
   const dispatch = useDispatch();
   const { deleteHero } = bindActionCreators(actionCreators, dispatch);
   return (

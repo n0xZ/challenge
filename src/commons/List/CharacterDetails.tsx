@@ -5,15 +5,18 @@ interface CharacterListPropsI {
 }
 const CharacterDetails: React.FC<CharacterListPropsI> = ({ character }) => {
   return (
-    <div>
-      <h1 className="text-center mb-4">Detalles del personaje</h1>
-      <div className="bg-dark text-center text-white mb-4">
-        <div className="d-flex flex-row justify-content-center">
+    <div className="container-sm  ">
+      <div className="row ">
+       
+        <div className="col"></div>
+        <div className="col-sm-3 text-center">
+          <h1 className="text-center mb-4">Detalles del personaje</h1>
+
           <div
             className={
               character?.biography.alignment === "bad"
-                ? "card border-danger bg-transparent text-danger mb-3 w-25 "
-                : "card border-primary bg-transparent text-primary mb-3 w-25 "
+                ? "card border-danger bg-transparent text-danger mb-3 w-100 text-center"
+                : "card border-primary bg-transparent text-primary mb-3 w-100 text-center"
             }
           >
             <div
@@ -71,7 +74,9 @@ const CharacterDetails: React.FC<CharacterListPropsI> = ({ character }) => {
             </div>
           </div>
         </div>
+        <div className="col"></div>
       </div>
+    
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { getCharacterByID } from "../../services/getCharacter";
 import { Character } from "../../types";
 import CharacterDetails from '../../commons/List/CharacterDetails'

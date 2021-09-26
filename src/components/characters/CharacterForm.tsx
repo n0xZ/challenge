@@ -1,6 +1,6 @@
 import Navbar from "../navbar/Navbar";
-import { Formik, Field, Form, FormikHelpers } from "formik";
-import { useHistory } from "react-router";
+import { Formik, Field, Form, FormikHelpers,ErrorMessage } from "formik";
+import { useHistory } from "react-router-dom";
 type searchCharacter = {
   name: string;
 };
@@ -46,7 +46,7 @@ const CharacterForm = () => {
                 validate={validateName}
               />
               {errors.name && touched.name && (
-                <div className="text-warning"> {errors.name}</div>
+                <div className="text-warning" > {errors.name}</div>
               )}
 
               <button
