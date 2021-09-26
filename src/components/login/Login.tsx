@@ -22,6 +22,7 @@ const Login = () => {
         <div className="col"></div>
         <div className="col">
           <h1 className="mb-3 ">Login Form</h1>
+      
           <Formik
             initialValues={INITIAL_VALUE}
             onSubmit={async (values: User, actions: FormikHelpers<User>) => {
@@ -30,7 +31,7 @@ const Login = () => {
                 getSesionToken(userSubmitted);
                 actions.setSubmitting(false);
               }, 1000);
-              window.location.replace('/')
+     
               setuserAuth(true);
             }}
           >

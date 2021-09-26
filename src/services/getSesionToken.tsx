@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 import { User } from "../types";
 
 export const getSesionToken = (user: User): void => {

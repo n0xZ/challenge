@@ -1,6 +1,7 @@
 import Navbar from "../navbar/Navbar";
 import { Formik, Field, Form, FormikHelpers,ErrorMessage } from "formik";
 import { useHistory } from "react-router-dom";
+import { validateName } from "../../auth/validateInputs";
 type searchCharacter = {
   name: string;
 };
@@ -9,15 +10,7 @@ const INITIAL_VALUE: searchCharacter = {
 };
 const CharacterForm = () => {
   let history = useHistory();
-  const validateName = (value: string) => {
-    let error;
-    if (!value) {
-      error = "Por favor, ingrese un nombre.";
-    } else {
-      error = undefined;
-    }
-    return error;
-  };
+
   return (
     <Navbar>
       <div className="bg-dark mb-4 container-sm">

@@ -47,6 +47,7 @@ export const getAcumulativeStats = (heroes: Character[]) => {
   }
   return initialPowerstats;
 };
+//Obtiene un array de Characters como parámetro, y devuelve un string como resultado de obtener el mayor stat, dentro de ese array
 export const getAverageStats = (heroes: Character[]) => {
   let parsePowerstatsObject = Object.entries(getAcumulativeStats(heroes));
   let initialValue = parsePowerstatsObject[0][1];
