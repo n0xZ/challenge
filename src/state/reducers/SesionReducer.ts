@@ -1,9 +1,10 @@
 import { ActionTypeI } from "../actions";
 import { Action } from "../actions";
+
 interface SesionStateI {
-  token: string | undefined;
+  isAuth: boolean;
 }
-const INITIAL_STATE = { token: undefined };
+const INITIAL_STATE = { isAuth: localStorage.getItem("token") ? true : false };
 export const SesionReducer = (
   state = INITIAL_STATE,
   action: Action
@@ -12,6 +13,7 @@ export const SesionReducer = (
     case ActionTypeI.LOGIN_USER:
       return {
         ...state,
+        isAuth: action.payload,
       };
 
     default:

@@ -1,5 +1,5 @@
 import { screen, render } from "@testing-library/react";
-import CharacterDetails from "../../../commons/List/CharacterDetails";
+import CharacterDetails from "../../../components/List/CharacterDetails";
 import { getCharacterByID } from "../../../services/getCharacter";
 import { Character } from "../../../types";
 

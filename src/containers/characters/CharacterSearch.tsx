@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { getCharacterResults } from "../../services/getCharacter";
 import { actionCreators } from "../../state/actions-creators/ActionCreators";
 import { Character, CharacterResults } from "../../types";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import {
   hasMoreThanThreeGoodHeroes,
   hasMoreThanThreeBadHeroes,

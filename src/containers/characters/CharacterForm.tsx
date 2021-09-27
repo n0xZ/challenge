@@ -1,4 +1,4 @@
-import Navbar from "../navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { Formik, Field, Form, FormikHelpers,ErrorMessage } from "formik";
 import { useHistory } from "react-router-dom";
 import { validateName } from "../../auth/validateInputs";

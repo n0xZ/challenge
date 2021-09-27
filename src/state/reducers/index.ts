@@ -2,6 +2,7 @@ import { Action } from "../actions";
 import { Character } from "../../types";
 import { ActionTypeI } from "../actions";
 import { combineReducers } from "redux";
+import { SesionReducer } from "./SesionReducer";
 export type CharacterState = {
   characters: Character[];
 };
@@ -29,13 +30,14 @@ const HeroesReducer = (
     case ActionTypeI.GET_HEROES:
       return { ...state };
 
-
     default:
       return { ...state };
   }
 };
+
 const reducers = combineReducers({
   hero: HeroesReducer,
+  sesion: SesionReducer,
 });
 export default reducers;
 export type State = ReturnType<typeof reducers>;

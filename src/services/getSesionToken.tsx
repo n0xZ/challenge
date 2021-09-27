@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 import { User } from "../types";
 
 export const getSesionToken = (user: User): void => {
@@ -10,7 +9,7 @@ export const getSesionToken = (user: User): void => {
       password: user.pass,
     })
     .then((res) => {
-      window.localStorage.setItem("token", JSON.stringify(res.data));
+      window.localStorage.setItem("token", JSON.stringify(res.data.token));
     })
     .catch((error) => {
       console.log(error);

@@ -1,38 +1,39 @@
 import { Formik, Form, Field, FormikHelpers } from "formik";
 import { User } from "../../types";
 import { getSesionToken } from "../../services/getSesionToken";
-import { useState } from "react";
 
-import { isUserLogged } from "../../auth/isUserLogged";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router";
 import { validateEmail, validatePassword } from "../../auth/validateInputs";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { actionCreators } from "../../state/actions-creators/ActionCreators";
 const INITIAL_VALUE: User = {
   email: "",
   pass: "",
 };
 
 const Login = () => {
-  const [userAuth, setuserAuth] = useState(isUserLogged);
+  const dispatch = useDispatch();
+  const { setLogin } = bindActionCreators(actionCreators, dispatch);
   //Validaciones de formulario
 
-  if (userAuth) return <Redirect to="/" />;
   return (
     <div className="container-sm ">
       <div className="row">
         <div className="col"></div>
         <div className="col">
           <h1 className="mb-3 ">Login Form</h1>
-      
+
           <Formik
             initialValues={INITIAL_VALUE}
             onSubmit={async (values: User, actions: FormikHelpers<User>) => {
               setTimeout(() => {
                 let userSubmitted = values;
                 getSesionToken(userSubmitted);
+                setLogin(true);
+                actions.resetForm();
                 actions.setSubmitting(false);
-              }, 1000);
-     
-              setuserAuth(true);
+              }, 500);
             }}
           >
             {({ errors, touched }) => (

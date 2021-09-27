@@ -16,4 +16,12 @@ export const deleteHero = (heroID: string) => {
   };
 };
 
-
+export const setLogin =  (setAuth: boolean) => {
+  
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionTypeI.LOGIN_USER,
+      payload: setAuth,
+    });
+  };
+};

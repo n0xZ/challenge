@@ -1,17 +1,20 @@
-import React from "react";
+import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
 import { RouteProps } from "react-router-dom";
-import { isUserLogged } from "../auth/isUserLogged";
-interface RoutesProps extends RouteProps {}
 
-const PrivateRoutes: React.FC<RoutesProps> = ({ ...rest }) => {
-  if (isUserLogged) {
-    console.log("Ruta funcionando");
+
+import { State } from "../state/reducers";
+interface RoutesProps extends RouteProps{}
+
+const PrivateRoutes: React.FC<RoutesProps> = ({...rest}) => {
+
+  let sesionToken = useSelector((state: State) => state.sesion.isAuth);
+
+  if (sesionToken) {
     return <Route {...rest} />;
   } else {
-    console.log("Ruta redireccionada");
-    return <Redirect to="/login" />;
+    return <Redirect to={{ pathname: "/login" }} />;
   }
 };
 

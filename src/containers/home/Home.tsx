@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { State } from "../../state/reducers";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import CharacterList from "../characters/CharacterList";
 import {
   getAcumulativeStats,
