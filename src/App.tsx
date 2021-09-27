@@ -10,7 +10,7 @@ import PublicRoutes from "./routes/PublicRoutes";
 
 const App: React.FC = () => {
   return (
-    <div className="bg-dark  text-white" style={{ height: "100vh" }}>
+    <div className="bg-dark  text-white vh-100" >
       <Switch>
         <PublicRoutes exact path="/login" component={Login} />
         <PrivateRoutes  exact path="/" component={Home} />

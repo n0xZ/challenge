@@ -12,6 +12,6 @@ export const getSesionToken = (user: User): void => {
       window.localStorage.setItem("token", JSON.stringify(res.data.token));
     })
     .catch((error) => {
-      console.log(error);
+    console.log(error)
     });
 };

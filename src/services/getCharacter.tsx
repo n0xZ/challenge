@@ -3,14 +3,14 @@ import { Character, CharacterResults } from "../types";
 
 export const getCharacterByID = async (id?: string): Promise<Character> => {
   const resp = await axiosInstance.get<Character>(`${id}`);
-
+console.log(resp.data)
   return resp.data;
 };
 
 export const getCharacterByCharacters = async (
   letter?: string
 ): Promise<Character[]> => {
-  const resp = await axiosInstance.get<CharacterResults>(`search/${letter}`);
+  const resp = await axiosInstance.get<CharacterResults>(`/search/${letter}`);
 
   return resp.data.results;
 };
