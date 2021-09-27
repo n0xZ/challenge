@@ -31,10 +31,16 @@ const CharacterSearch = () => {
   }, []);
   const addHeroBasedOnHeroesAlignment = (hero: Character) => {
     if (
-      hasMoreThanThreeGoodHeroes(heroes) ||
+      hero.biography.alignment === "good" &&
+      hasMoreThanThreeGoodHeroes(heroes)
+    ) {
+      return "No se puede agregar más de tres heroes de tipo 'hero'";
+    }
+    if (
+      hero.biography.alignment === "bad" &&
       hasMoreThanThreeBadHeroes(heroes)
     ) {
-      return "No se puede agregar más de tres heroes del mismo tipo";
+      return "No se puede agregar más de tres heroes de tipo 'villain'";
     } else {
       addHero(hero);
       return "Heroe Agregado con éxito";
@@ -78,7 +84,6 @@ const CharacterSearch = () => {
                           src={char.image.url}
                           alt="Imagen de personaje"
                           className=" img-fluid rounded-circle py-2 "
-                        
                         />
                       </div>
                       <div
